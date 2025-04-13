@@ -2,9 +2,9 @@ import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/co
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as crypto from 'crypto';
-import { ApiKey } from '../entities/apikey.entity';
-import { CreateApiKeyDto } from '../dtos/create-api-key.dto';
-import { ApiKeyResponse } from '../dtos/api-key-response.dto';
+import { ApiKey } from '../../domain/entities/apikey.entity';
+import { CreateApiKeyDto } from '../../domain/dtos/create-api-key.dto';
+import { ApiKeyResponse } from '../../domain/dtos/api-key-response.dto';
 import { Status } from '../misc/types';
 
 @Injectable()
@@ -18,11 +18,15 @@ export class ApiKeyService {
 
         await this.verifyIfShouldCreatApiKey(createApiKeyDto);
 
+        const { email, name, userType } = createApiKeyDto;
+
         const apiKeyHash = crypto.createHash('sha256').update(createApiKeyDto.email).digest('hex');
 
         const apiKey = new ApiKey({
-            ...createApiKeyDto,
-            key: apiKeyHash,
+            owner: name,
+            userType,
+            email,
+            key: `TS-${apiKeyHash}`,
         });
 
         return this.apiKeyRepository.save(apiKey)

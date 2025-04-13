@@ -1,9 +1,9 @@
-import { DeleteDateColumn, CreateDateColumn, UpdateDateColumn, Column } from 'typeorm';
+import { DeleteDateColumn, CreateDateColumn, UpdateDateColumn, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 export class BaseEntity {
 
-    @Column({ name: 'name' })
-    name: string;
+    @PrimaryGeneratedColumn('uuid')
+    readonly id: string;
 
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;

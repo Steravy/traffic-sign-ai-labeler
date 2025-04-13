@@ -1,8 +1,8 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiBadRequestResponse, ApiConflictResponse, ApiInternalServerErrorResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { ApiKeyService } from '../services/api-key.service';
-import { ApiKeyResponse } from '../dtos/api-key-response.dto';
-import { CreateApiKeyDto } from '../dtos/create-api-key.dto';
+import { ApiKeyService } from '../../../auth/application/services/api-key.service';
+import { ApiKeyResponse } from '../../../auth/domain/dtos/api-key-response.dto';
+import { CreateApiKeyDto } from '../../../auth/domain/dtos/create-api-key.dto';
 
 @ApiTags('Api Key')
 @Controller('auth')

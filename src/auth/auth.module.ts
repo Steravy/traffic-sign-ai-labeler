@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AuthService } from './services/auth.service';
-import { AuthController } from './controllers/auth.controller';
-import { ApiKeyGuard } from './guards/apikey.guard';
-import { ApiKeyStrategy } from './strategies/apikey.strategy';
+import { ApiKeyGuard } from './application/guards/apikey.guard';
+import { ApiKeyStrategy } from './application/strategies/apikey.strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ApiKey } from './entities/apikey.entity';
-import { ApiKeyService } from './services/api-key.service';
+import { AuthController } from './presentation/controllers/auth.controller';
+import { AuthService } from './application/services/auth.service';
+import { ApiKeyService } from './application/services/api-key.service';
+import { ApiKey } from './domain/entities/apikey.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ApiKey])],

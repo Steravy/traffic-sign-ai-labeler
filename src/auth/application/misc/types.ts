@@ -11,12 +11,12 @@ enum UserType {
 };
 
 type ApiKeyData = {
-    name: string;
+    owner: string;
     key: string;
     email: string;
     userType: UserType;
-  };
-  
+};
+
 
 export {
     Status,

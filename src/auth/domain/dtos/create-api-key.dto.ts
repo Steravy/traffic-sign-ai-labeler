@@ -1,6 +1,6 @@
 import { IsEmail, IsEnum, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { UserType } from '../misc/types';
+import { UserType } from '../../../auth/application/misc/types';
 
 export class CreateApiKeyDto {
     @ApiProperty({
